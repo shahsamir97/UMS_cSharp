@@ -16,5 +16,15 @@ namespace UnivarsityManagementSystem
         {
             InitializeComponent();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            MessageBox.Show("");
+        }
+
+        private void metroUserControl1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
