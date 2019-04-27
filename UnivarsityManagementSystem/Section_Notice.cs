@@ -17,7 +17,5 @@ namespace UnivarsityManagementSystem
         public int notice_no { get; set; }
         public int teacher_id { get; set; }
         public string messeage { get; set; }
-    
-        public virtual Teacher Teacher { get; set; }
     }
 }

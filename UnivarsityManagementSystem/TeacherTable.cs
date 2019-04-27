@@ -12,13 +12,11 @@ namespace UnivarsityManagementSystem
     using System;
     using System.Collections.Generic;
     
-    public partial class UserInfo
+    public partial class TeacherTable
     {
         public int ID { get; set; }
-        public string u_name { get; set; }
-        public string u_password { get; set; }
-        public string u_type { get; set; }
+        public string EMAIL { get; set; }
     
-        public virtual TeacherTable TeacherTable { get; set; }
+        public virtual UserInfo UserInfo { get; set; }
     }
 }

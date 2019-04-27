@@ -22,6 +22,5 @@ namespace UnivarsityManagementSystem
         public int teacher_id { get; set; }
     
         public virtual Section Section { get; set; }
-        public virtual Teacher Teacher { get; set; }
     }
 }

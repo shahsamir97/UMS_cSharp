@@ -104,9 +104,8 @@
     <Compile Include="StudentPanel.Designer.cs">
       <DependentUpon>StudentPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Teacher.cs">
+    <Compile Include="TeacherTable.cs">
       <DependentUpon>UMS_Database.tt</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="UMS_Database.Context.cs">
       <AutoGen>True</AutoGen>
@@ -126,20 +125,10 @@
       <DependentUpon>UMS_Database.edmx</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="UMS_DatabaseDataSet.Designer.cs">
+    <Compile Include="UMS_DatabaseDataSet3.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>UMS_DatabaseDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="UMS_DatabaseDataSet1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>UMS_DatabaseDataSet1.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="UMS_DatabaseDataSet2.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>UMS_DatabaseDataSet2.xsd</DependentUpon>
+      <DependentUpon>UMS_DatabaseDataSet3.xsd</DependentUpon>
     </Compile>
     <Compile Include="UMS_DatabaseDataSet4.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -150,6 +139,7 @@
       <DependentUpon>UMS_Database.tt</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="UserInfo2.cs" />
     <EmbeddedResource Include="AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -191,38 +181,16 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </None>
-    <None Include="UMS_DatabaseDataSet.xsc">
-      <DependentUpon>UMS_DatabaseDataSet.xsd</DependentUpon>
+    <None Include="UMS_DatabaseDataSet3.xsc">
+      <DependentUpon>UMS_DatabaseDataSet3.xsd</DependentUpon>
     </None>
-    <None Include="UMS_DatabaseDataSet.xsd">
+    <None Include="UMS_DatabaseDataSet3.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>UMS_DatabaseDataSet.Designer.cs</LastGenOutput>
+      <LastGenOutput>UMS_DatabaseDataSet3.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="UMS_DatabaseDataSet.xss">
-      <DependentUpon>UMS_DatabaseDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="UMS_DatabaseDataSet1.xsc">
-      <DependentUpon>UMS_DatabaseDataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="UMS_DatabaseDataSet1.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>UMS_DatabaseDataSet1.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="UMS_DatabaseDataSet1.xss">
-      <DependentUpon>UMS_DatabaseDataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="UMS_DatabaseDataSet2.xsc">
-      <DependentUpon>UMS_DatabaseDataSet2.xsd</DependentUpon>
-    </None>
-    <None Include="UMS_DatabaseDataSet2.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>UMS_DatabaseDataSet2.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="UMS_DatabaseDataSet2.xss">
-      <DependentUpon>UMS_DatabaseDataSet2.xsd</DependentUpon>
+    <None Include="UMS_DatabaseDataSet3.xss">
+      <DependentUpon>UMS_DatabaseDataSet3.xsd</DependentUpon>
     </None>
     <None Include="UMS_DatabaseDataSet4.xsc">
       <DependentUpon>UMS_DatabaseDataSet4.xsd</DependentUpon>

@@ -51,15 +51,12 @@
           <Property Name="student_name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="student_password" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <EntityType Name="Teacher">
+        <EntityType Name="TeacherTable">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="t_name" Type="nvarchar" MaxLength="25" Nullable="false" />
-          <Property Name="t_email" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="t_password" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="u_id" Type="int" />
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="EMAIL" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="UserInfo">
           <Key>
@@ -70,30 +67,6 @@
           <Property Name="u_password" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="u_type" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Course_UserInfo">
-          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
-          <End Role="Course" Type="Self.Course" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserInfo">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Course">
-              <PropertyRef Name="user_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Section Notice_Teacher">
-          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
-          <End Role="Section Notice" Type="Self.Section Notice" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Teacher">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Section Notice">
-              <PropertyRef Name="teacher_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Section Student_Section">
           <End Role="Section" Type="Self.Section" Multiplicity="1" />
           <End Role="Section Student" Type="Self.Section Student" Multiplicity="*" />
@@ -103,18 +76,6 @@
             </Principal>
             <Dependent Role="Section Student">
               <PropertyRef Name="section_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Section Student_Teacher">
-          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
-          <End Role="Section Student" Type="Self.Section Student" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Teacher">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Section Student">
-              <PropertyRef Name="teacher_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -142,27 +103,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Section_Teacher">
-          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
-          <End Role="Section" Type="Self.Section" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Teacher">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Section">
-              <PropertyRef Name="teacher_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Teacher_UserInfo">
-          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
-          <End Role="Teacher" Type="Self.Teacher" Multiplicity="*" />
+        <Association Name="FK_TeacherTable_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="TeacherTable" Type="Self.TeacherTable" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="UserInfo">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Teacher">
-              <PropertyRef Name="u_id" />
+            <Dependent Role="TeacherTable">
+              <PropertyRef Name="ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -172,22 +121,10 @@
           <EntitySet Name="Section Notice" EntityType="Self.Section Notice" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Section Student" EntityType="Self.Section Student" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TeacherTable" EntityType="Self.TeacherTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserInfo" EntityType="Self.UserInfo" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Course_UserInfo" Association="Self.FK_Course_UserInfo">
-            <End Role="UserInfo" EntitySet="UserInfo" />
-            <End Role="Course" EntitySet="Course" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Section Notice_Teacher" Association="Self.FK_Section Notice_Teacher">
-            <End Role="Teacher" EntitySet="Teacher" />
-            <End Role="Section Notice" EntitySet="Section Notice" />
-          </AssociationSet>
           <AssociationSet Name="FK_Section Student_Section" Association="Self.FK_Section Student_Section">
             <End Role="Section" EntitySet="Section" />
-            <End Role="Section Student" EntitySet="Section Student" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Section Student_Teacher" Association="Self.FK_Section Student_Teacher">
-            <End Role="Teacher" EntitySet="Teacher" />
             <End Role="Section Student" EntitySet="Section Student" />
           </AssociationSet>
           <AssociationSet Name="FK_Section_Course" Association="Self.FK_Section_Course">
@@ -198,13 +135,9 @@
             <End Role="Student" EntitySet="Student" />
             <End Role="Section" EntitySet="Section" />
           </AssociationSet>
-          <AssociationSet Name="FK_Section_Teacher" Association="Self.FK_Section_Teacher">
-            <End Role="Teacher" EntitySet="Teacher" />
-            <End Role="Section" EntitySet="Section" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Teacher_UserInfo" Association="Self.FK_Teacher_UserInfo">
+          <AssociationSet Name="FK_TeacherTable_UserInfo" Association="Self.FK_TeacherTable_UserInfo">
             <End Role="UserInfo" EntitySet="UserInfo" />
-            <End Role="Teacher" EntitySet="Teacher" />
+            <End Role="TeacherTable" EntitySet="TeacherTable" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -217,12 +150,8 @@
           <EntitySet Name="Section_Notices" EntityType="UMS_DatabaseModel.Section_Notice" />
           <EntitySet Name="Section_Students" EntityType="UMS_DatabaseModel.Section_Student" />
           <EntitySet Name="Students" EntityType="UMS_DatabaseModel.Student" />
-          <EntitySet Name="Teachers" EntityType="UMS_DatabaseModel.Teacher" />
+          <EntitySet Name="TeacherTables" EntityType="UMS_DatabaseModel.TeacherTable" />
           <EntitySet Name="UserInfoes" EntityType="UMS_DatabaseModel.UserInfo" />
-          <AssociationSet Name="FK_Course_UserInfo" Association="UMS_DatabaseModel.FK_Course_UserInfo">
-            <End Role="UserInfo" EntitySet="UserInfoes" />
-            <End Role="Course" EntitySet="Courses" />
-          </AssociationSet>
           <AssociationSet Name="FK_Section_Course" Association="UMS_DatabaseModel.FK_Section_Course">
             <End Role="Course" EntitySet="Courses" />
             <End Role="Section" EntitySet="Sections" />
@@ -235,21 +164,9 @@
             <End Role="Student" EntitySet="Students" />
             <End Role="Section" EntitySet="Sections" />
           </AssociationSet>
-          <AssociationSet Name="FK_Section_Teacher" Association="UMS_DatabaseModel.FK_Section_Teacher">
-            <End Role="Teacher" EntitySet="Teachers" />
-            <End Role="Section" EntitySet="Sections" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Section_Notice_Teacher" Association="UMS_DatabaseModel.FK_Section_Notice_Teacher">
-            <End Role="Teacher" EntitySet="Teachers" />
-            <End Role="Section_Notice" EntitySet="Section_Notices" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Section_Student_Teacher" Association="UMS_DatabaseModel.FK_Section_Student_Teacher">
-            <End Role="Teacher" EntitySet="Teachers" />
-            <End Role="Section_Student" EntitySet="Section_Students" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Teacher_UserInfo" Association="UMS_DatabaseModel.FK_Teacher_UserInfo">
+          <AssociationSet Name="FK_TeacherTable_UserInfo" Association="UMS_DatabaseModel.FK_TeacherTable_UserInfo">
             <End Role="UserInfo" EntitySet="UserInfoes" />
-            <End Role="Teacher" EntitySet="Teachers" />
+            <End Role="TeacherTable" EntitySet="TeacherTables" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Course">
@@ -260,7 +177,6 @@
           <Property Name="course_name" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
           <Property Name="course_credit" Type="Int32" Nullable="false" />
           <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="UserInfo" Relationship="UMS_DatabaseModel.FK_Course_UserInfo" FromRole="Course" ToRole="UserInfo" />
           <NavigationProperty Name="Sections" Relationship="UMS_DatabaseModel.FK_Section_Course" FromRole="Course" ToRole="Section" />
         </EntityType>
         <EntityType Name="Section">
@@ -275,7 +191,6 @@
           <NavigationProperty Name="Course" Relationship="UMS_DatabaseModel.FK_Section_Course" FromRole="Section" ToRole="Course" />
           <NavigationProperty Name="Section_Student" Relationship="UMS_DatabaseModel.FK_Section_Student_Section" FromRole="Section" ToRole="Section_Student" />
           <NavigationProperty Name="Student" Relationship="UMS_DatabaseModel.FK_Section_Student" FromRole="Section" ToRole="Student" />
-          <NavigationProperty Name="Teacher" Relationship="UMS_DatabaseModel.FK_Section_Teacher" FromRole="Section" ToRole="Teacher" />
         </EntityType>
         <EntityType Name="Section_Notice">
           <Key>
@@ -284,7 +199,6 @@
           <Property Name="notice_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="teacher_id" Type="Int32" Nullable="false" />
           <Property Name="messeage" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Teacher" Relationship="UMS_DatabaseModel.FK_Section_Notice_Teacher" FromRole="Section_Notice" ToRole="Teacher" />
         </EntityType>
         <EntityType Name="Section_Student">
           <Key>
@@ -297,7 +211,6 @@
           <Property Name="grand" Type="Int32" Nullable="false" />
           <Property Name="teacher_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Section" Relationship="UMS_DatabaseModel.FK_Section_Student_Section" FromRole="Section_Student" ToRole="Section" />
-          <NavigationProperty Name="Teacher" Relationship="UMS_DatabaseModel.FK_Section_Student_Teacher" FromRole="Section_Student" ToRole="Teacher" />
         </EntityType>
         <EntityType Name="Student">
           <Key>
@@ -308,19 +221,13 @@
           <Property Name="student_password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Sections" Relationship="UMS_DatabaseModel.FK_Section_Student" FromRole="Student" ToRole="Section" />
         </EntityType>
-        <EntityType Name="Teacher">
+        <EntityType Name="TeacherTable">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="t_name" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
-          <Property Name="t_email" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="t_password" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="u_id" Type="Int32" />
-          <NavigationProperty Name="Sections" Relationship="UMS_DatabaseModel.FK_Section_Teacher" FromRole="Teacher" ToRole="Section" />
-          <NavigationProperty Name="Section_Notice" Relationship="UMS_DatabaseModel.FK_Section_Notice_Teacher" FromRole="Teacher" ToRole="Section_Notice" />
-          <NavigationProperty Name="Section_Student" Relationship="UMS_DatabaseModel.FK_Section_Student_Teacher" FromRole="Teacher" ToRole="Section_Student" />
-          <NavigationProperty Name="UserInfo" Relationship="UMS_DatabaseModel.FK_Teacher_UserInfo" FromRole="Teacher" ToRole="UserInfo" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="EMAIL" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserInfo" Relationship="UMS_DatabaseModel.FK_TeacherTable_UserInfo" FromRole="TeacherTable" ToRole="UserInfo" />
         </EntityType>
         <EntityType Name="UserInfo">
           <Key>
@@ -330,21 +237,8 @@
           <Property Name="u_name" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
           <Property Name="u_password" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="u_type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Courses" Relationship="UMS_DatabaseModel.FK_Course_UserInfo" FromRole="UserInfo" ToRole="Course" />
-          <NavigationProperty Name="Teachers" Relationship="UMS_DatabaseModel.FK_Teacher_UserInfo" FromRole="UserInfo" ToRole="Teacher" />
+          <NavigationProperty Name="TeacherTable" Relationship="UMS_DatabaseModel.FK_TeacherTable_UserInfo" FromRole="UserInfo" ToRole="TeacherTable" />
         </EntityType>
-        <Association Name="FK_Course_UserInfo">
-          <End Type="UMS_DatabaseModel.UserInfo" Role="UserInfo" Multiplicity="1" />
-          <End Type="UMS_DatabaseModel.Course" Role="Course" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserInfo">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Course">
-              <PropertyRef Name="user_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Section_Course">
           <End Type="UMS_DatabaseModel.Course" Role="Course" Multiplicity="1" />
           <End Type="UMS_DatabaseModel.Section" Role="Section" Multiplicity="*" />
@@ -381,51 +275,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Section_Teacher">
-          <End Type="UMS_DatabaseModel.Teacher" Role="Teacher" Multiplicity="1" />
-          <End Type="UMS_DatabaseModel.Section" Role="Section" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Teacher">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Section">
-              <PropertyRef Name="teacher_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Section_Notice_Teacher">
-          <End Type="UMS_DatabaseModel.Teacher" Role="Teacher" Multiplicity="1" />
-          <End Type="UMS_DatabaseModel.Section_Notice" Role="Section_Notice" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Teacher">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Section_Notice">
-              <PropertyRef Name="teacher_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Section_Student_Teacher">
-          <End Type="UMS_DatabaseModel.Teacher" Role="Teacher" Multiplicity="1" />
-          <End Type="UMS_DatabaseModel.Section_Student" Role="Section_Student" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Teacher">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Section_Student">
-              <PropertyRef Name="teacher_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Teacher_UserInfo">
-          <End Type="UMS_DatabaseModel.UserInfo" Role="UserInfo" Multiplicity="0..1" />
-          <End Type="UMS_DatabaseModel.Teacher" Role="Teacher" Multiplicity="*" />
+        <Association Name="FK_TeacherTable_UserInfo">
+          <End Type="UMS_DatabaseModel.UserInfo" Role="UserInfo" Multiplicity="1" />
+          <End Type="UMS_DatabaseModel.TeacherTable" Role="TeacherTable" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="UserInfo">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Teacher">
-              <PropertyRef Name="u_id" />
+            <Dependent Role="TeacherTable">
+              <PropertyRef Name="ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -486,13 +344,10 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Teachers">
-            <EntityTypeMapping TypeName="UMS_DatabaseModel.Teacher">
-              <MappingFragment StoreEntitySet="Teacher">
-                <ScalarProperty Name="u_id" ColumnName="u_id" />
-                <ScalarProperty Name="t_password" ColumnName="t_password" />
-                <ScalarProperty Name="t_email" ColumnName="t_email" />
-                <ScalarProperty Name="t_name" ColumnName="t_name" />
+          <EntitySetMapping Name="TeacherTables">
+            <EntityTypeMapping TypeName="UMS_DatabaseModel.TeacherTable">
+              <MappingFragment StoreEntitySet="TeacherTable">
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

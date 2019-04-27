@@ -30,7 +30,7 @@ namespace UnivarsityManagementSystem
         public virtual DbSet<Section_Notice> Section_Notices { get; set; }
         public virtual DbSet<Section_Student> Section_Students { get; set; }
         public virtual DbSet<Student> Students { get; set; }
-        public virtual DbSet<Teacher> Teachers { get; set; }
+        public virtual DbSet<TeacherTable> TeacherTables { get; set; }
         public virtual DbSet<UserInfo> UserInfoes { get; set; }
     }
 }

@@ -30,6 +30,5 @@ namespace UnivarsityManagementSystem
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Section_Student> Section_Student { get; set; }
         public virtual Student Student { get; set; }
-        public virtual Teacher Teacher { get; set; }
     }
 }
