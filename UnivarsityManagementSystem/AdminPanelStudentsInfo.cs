@@ -19,30 +19,41 @@ namespace UnivarsityManagementSystem
 
         private void studentInfoAdmin_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'uMS_DatabaseDataSet4.Student' table. You can move, or remove it, as needed.
-            this.studentTableAdapter.Fill(this.uMS_DatabaseDataSet4.Student);
+            populateDataGridView();
         }
 
-        //Other class objects 
-        Student studentModel = new Student();
+       //Database Object
         UMS_DatabaseEntities context = new UMS_DatabaseEntities();
 
         void populateDataGridView()
         {
-            dataGridView1.DataSource = context.Students.ToList<Student>();
+            var studentlist = context.UserInfoes.Where(u => u.u_type == "Student").ToList();
+            dataGridView1.AutoGenerateColumns = false;
+            dataGridView1.DataSource = studentlist;
+            dataGridView1.Refresh();
+            dataGridView1.ClearSelection();
         }
 
         private void addBtn_Click(object sender, EventArgs e)
         {
-            if (nameTxt.Text != "" && passwordTxt.Text != "")
+            //Database Table Obejcts
+            UserInfo studentModel;
+            studentModel = new UserInfo();
+            studentModel.student = new student();
+            //
+            if (nameTxt.Text != "" && passwordTxt.Text != "" && email.Text!=" " && comboBox1.SelectedItem.ToString()!="")
             {
-                studentModel.student_name = nameTxt.Text;
-                studentModel.student_password = passwordTxt.Text;
-
-                context.Students.Add(studentModel);
+                studentModel.u_name = nameTxt.Text;
+                studentModel.u_password = passwordTxt.Text;
+                studentModel.u_type = "Student";
+                studentModel.student.email = emailTxt.Text;
+                studentModel.student.int_stu = comboBox1.SelectedItem.ToString();
+                context.UserInfoes.Add(studentModel);
                 context.SaveChanges();
-                context.SaveChangesAsync();
                 populateDataGridView();
+
+                //clearing fields
+                nameTxt.Text = passwordTxt.Text = emailTxt.Text = "";
             }
             else
             {
@@ -55,7 +66,7 @@ namespace UnivarsityManagementSystem
             DialogResult dr = MessageBox.Show("Are you sure to save Changes", "Message", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
             if (dr == DialogResult.Yes)
             {
-                this.studentTableAdapter.Update(this.uMS_DatabaseDataSet4.Student);
+                this.dataGridView1.Update();
                 dataGridView1.Refresh();
                 context.SaveChanges();
                 MessageBox.Show("Record Updated");
@@ -64,46 +75,46 @@ namespace UnivarsityManagementSystem
 
         private void searchBtn_Click(object sender, EventArgs e)
         {
-            var students = context.Students.ToList();
+            var studentlist = context.UserInfoes.Where(u => u.u_type == "Student").ToList();
             if (searchTxt.Text != "")
             {
-                students = students.Where(d => d.student_name.Contains(searchTxt.Text)).ToList();
+                studentlist = studentlist.Where(d => d.u_name.Contains(searchTxt.Text)).ToList();
+                dataGridView1.DataSource = studentlist;
             }
-
-            dataGridView1.AutoGenerateColumns = false;
-            dataGridView1.DataSource = students;
+            dataGridView1.DataSource = studentlist;
             dataGridView1.Refresh();
         }
 
-        //variable
-        bool isCellSelected = false;
-        string deleteStudentID;
-        private void deleteBtn_Click(object sender, EventArgs e)
-        {
-            if (isCellSelected == true)
+        //variable for below functions
+            bool isCellSelected = false;
+            string deleteStudentID;
+            private void deleteBtn_Click(object sender, EventArgs e)
             {
-                int deletingId = Int32.Parse(deleteStudentID);
-                var deletingStudent = context.Students.FirstOrDefault(sid => sid.ID == deletingId);
-                if (deletingStudent == null)
+                if (isCellSelected == true)
                 {
-                    MessageBox.Show("Something went wrong!No data available for delete!Make sure you selected a Row to delete.");
-                    return;
-                }
-                context.Students.Remove(deletingStudent);
-                context.SaveChanges();
+                    int deletingId = Int32.Parse(deleteStudentID);
+                    var deletingStudent = context.UserInfoes.FirstOrDefault(tid => tid.ID == deletingId);
+                    if (deletingStudent == null)
+                    {
+                        MessageBox.Show("Something went wrong!No data available for delete!Make sure you selected a Row to delete.");
+                        return;
+                    }
+                    context.students.Remove(deletingStudent.student);
+                    context.UserInfoes.Remove(deletingStudent);
+                    context.SaveChanges();
 
-                populateDataGridView();
-                dataGridView1.ClearSelection();
+                    populateDataGridView();
+                    dataGridView1.ClearSelection();
+                }
+                else
+                {
+                    MessageBox.Show("No Row selected!");
+                }
             }
-            else
-            {
-                MessageBox.Show("No Row selected!");
-            }
-        }
 
         private void refreshBtn_Click(object sender, EventArgs e)
         {
-            dataGridView1.Refresh();
+            populateDataGridView();
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -113,6 +124,12 @@ namespace UnivarsityManagementSystem
                 isCellSelected = true;
                 deleteStudentID = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
             }
+        }
+
+        private void searchTxt_Click(object sender, EventArgs e)
+        {
+            searchTxt.ForeColor = Color.Black;
+            searchTxt.Text = "";
         }
     }
 }

@@ -25,13 +25,24 @@ namespace UnivarsityManagementSystem
         private void studentInfoToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             AdminPanelStudentsInfo studentinfo = new AdminPanelStudentsInfo();
-            studentinfo.TopLevel = false;
-            studentinfo.AutoScroll = true;
-            studentinfo.FormBorderStyle = FormBorderStyle.None;
-            studentinfo.Dock = DockStyle.Fill;
+            setPanelviews(studentinfo);
+        }
+
+        private void teachersInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AdminPanelTeachersInfos teachersInfo = new AdminPanelTeachersInfos();
+            setPanelviews(teachersInfo);
+        }
+
+       private void setPanelviews(Form e)
+        {
             this.panel2.Controls.Clear();
-            this.panel2.Controls.Add(studentinfo);
-            studentinfo.Show();
+            e.TopLevel = false;
+            e.AutoScroll = true;
+            e.FormBorderStyle = FormBorderStyle.None;
+            e.Dock = DockStyle.Fill;
+            this.panel2.Controls.Add(e);
+            e.Show();
         }
     }
 }

@@ -5,58 +5,20 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="UMS_DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Course">
+        <EntityType Name="student">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="course_name" Type="nvarchar" MaxLength="25" Nullable="false" />
-          <Property Name="course_credit" Type="int" Nullable="false" />
-          <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Section">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="sec_name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="teacher_id" Type="int" Nullable="false" />
-          <Property Name="course_id" Type="int" Nullable="false" />
-          <Property Name="student_id" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Section Notice">
-          <Key>
-            <PropertyRef Name="notice_no" />
-          </Key>
-          <Property Name="notice_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="teacher_id" Type="int" Nullable="false" />
-          <Property Name="messeage" Type="varchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Section Student">
-          <Key>
-            <PropertyRef Name="sec_student_id" />
-          </Key>
-          <Property Name="sec_student_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="section_id" Type="int" Nullable="false" />
-          <Property Name="mid" Type="int" Nullable="false" />
-          <Property Name="final" Type="int" Nullable="false" />
-          <Property Name="grand" Type="int" Nullable="false" />
-          <Property Name="teacher_id" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Student">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="student_name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="student_password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="int_stu" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="TeacherTable">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="EMAIL" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EMAIL" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="UserInfo">
           <Key>
@@ -67,39 +29,15 @@
           <Property Name="u_password" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="u_type" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Section Student_Section">
-          <End Role="Section" Type="Self.Section" Multiplicity="1" />
-          <End Role="Section Student" Type="Self.Section Student" Multiplicity="*" />
+        <Association Name="FK_student_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="student" Type="Self.student" Multiplicity="0..1" />
           <ReferentialConstraint>
-            <Principal Role="Section">
+            <Principal Role="UserInfo">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Section Student">
-              <PropertyRef Name="section_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Section_Course">
-          <End Role="Course" Type="Self.Course" Multiplicity="1" />
-          <End Role="Section" Type="Self.Section" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Course">
+            <Dependent Role="student">
               <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Section">
-              <PropertyRef Name="course_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Section_Student">
-          <End Role="Student" Type="Self.Student" Multiplicity="1" />
-          <End Role="Section" Type="Self.Section" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Student">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Section">
-              <PropertyRef Name="student_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -116,24 +54,12 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="UMS_DatabaseModelStoreContainer">
-          <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Section" EntityType="Self.Section" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Section Notice" EntityType="Self.Section Notice" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Section Student" EntityType="Self.Section Student" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="student" EntityType="Self.student" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TeacherTable" EntityType="Self.TeacherTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserInfo" EntityType="Self.UserInfo" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Section Student_Section" Association="Self.FK_Section Student_Section">
-            <End Role="Section" EntitySet="Section" />
-            <End Role="Section Student" EntitySet="Section Student" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Section_Course" Association="Self.FK_Section_Course">
-            <End Role="Course" EntitySet="Course" />
-            <End Role="Section" EntitySet="Section" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Section_Student" Association="Self.FK_Section_Student">
-            <End Role="Student" EntitySet="Student" />
-            <End Role="Section" EntitySet="Section" />
+          <AssociationSet Name="FK_student_UserInfo" Association="Self.FK_student_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="student" EntitySet="student" />
           </AssociationSet>
           <AssociationSet Name="FK_TeacherTable_UserInfo" Association="Self.FK_TeacherTable_UserInfo">
             <End Role="UserInfo" EntitySet="UserInfo" />
@@ -145,88 +71,33 @@
     <edmx:ConceptualModels>
       <Schema Namespace="UMS_DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="UMS_DatabaseEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Courses" EntityType="UMS_DatabaseModel.Course" />
-          <EntitySet Name="Sections" EntityType="UMS_DatabaseModel.Section" />
-          <EntitySet Name="Section_Notices" EntityType="UMS_DatabaseModel.Section_Notice" />
-          <EntitySet Name="Section_Students" EntityType="UMS_DatabaseModel.Section_Student" />
-          <EntitySet Name="Students" EntityType="UMS_DatabaseModel.Student" />
+          <EntitySet Name="students" EntityType="UMS_DatabaseModel.student" />
           <EntitySet Name="TeacherTables" EntityType="UMS_DatabaseModel.TeacherTable" />
           <EntitySet Name="UserInfoes" EntityType="UMS_DatabaseModel.UserInfo" />
-          <AssociationSet Name="FK_Section_Course" Association="UMS_DatabaseModel.FK_Section_Course">
-            <End Role="Course" EntitySet="Courses" />
-            <End Role="Section" EntitySet="Sections" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Section_Student_Section" Association="UMS_DatabaseModel.FK_Section_Student_Section">
-            <End Role="Section" EntitySet="Sections" />
-            <End Role="Section_Student" EntitySet="Section_Students" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Section_Student" Association="UMS_DatabaseModel.FK_Section_Student">
-            <End Role="Student" EntitySet="Students" />
-            <End Role="Section" EntitySet="Sections" />
+          <AssociationSet Name="FK_student_UserInfo" Association="UMS_DatabaseModel.FK_student_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfoes" />
+            <End Role="student" EntitySet="students" />
           </AssociationSet>
           <AssociationSet Name="FK_TeacherTable_UserInfo" Association="UMS_DatabaseModel.FK_TeacherTable_UserInfo">
             <End Role="UserInfo" EntitySet="UserInfoes" />
             <End Role="TeacherTable" EntitySet="TeacherTables" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Course">
+        <EntityType Name="student">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="course_name" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
-          <Property Name="course_credit" Type="Int32" Nullable="false" />
-          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Sections" Relationship="UMS_DatabaseModel.FK_Section_Course" FromRole="Course" ToRole="Section" />
-        </EntityType>
-        <EntityType Name="Section">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="sec_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="teacher_id" Type="Int32" Nullable="false" />
-          <Property Name="course_id" Type="Int32" Nullable="false" />
-          <Property Name="student_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Course" Relationship="UMS_DatabaseModel.FK_Section_Course" FromRole="Section" ToRole="Course" />
-          <NavigationProperty Name="Section_Student" Relationship="UMS_DatabaseModel.FK_Section_Student_Section" FromRole="Section" ToRole="Section_Student" />
-          <NavigationProperty Name="Student" Relationship="UMS_DatabaseModel.FK_Section_Student" FromRole="Section" ToRole="Student" />
-        </EntityType>
-        <EntityType Name="Section_Notice">
-          <Key>
-            <PropertyRef Name="notice_no" />
-          </Key>
-          <Property Name="notice_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="teacher_id" Type="Int32" Nullable="false" />
-          <Property Name="messeage" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="Section_Student">
-          <Key>
-            <PropertyRef Name="sec_student_id" />
-          </Key>
-          <Property Name="sec_student_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="section_id" Type="Int32" Nullable="false" />
-          <Property Name="mid" Type="Int32" Nullable="false" />
-          <Property Name="final" Type="Int32" Nullable="false" />
-          <Property Name="grand" Type="Int32" Nullable="false" />
-          <Property Name="teacher_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Section" Relationship="UMS_DatabaseModel.FK_Section_Student_Section" FromRole="Section_Student" ToRole="Section" />
-        </EntityType>
-        <EntityType Name="Student">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="student_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="student_password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Sections" Relationship="UMS_DatabaseModel.FK_Section_Student" FromRole="Student" ToRole="Section" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="int_stu" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserInfo" Relationship="UMS_DatabaseModel.FK_student_UserInfo" FromRole="student" ToRole="UserInfo" />
         </EntityType>
         <EntityType Name="TeacherTable">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="EMAIL" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="UserInfo" Relationship="UMS_DatabaseModel.FK_TeacherTable_UserInfo" FromRole="TeacherTable" ToRole="UserInfo" />
         </EntityType>
         <EntityType Name="UserInfo">
@@ -237,41 +108,18 @@
           <Property Name="u_name" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
           <Property Name="u_password" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="u_type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="student" Relationship="UMS_DatabaseModel.FK_student_UserInfo" FromRole="UserInfo" ToRole="student" />
           <NavigationProperty Name="TeacherTable" Relationship="UMS_DatabaseModel.FK_TeacherTable_UserInfo" FromRole="UserInfo" ToRole="TeacherTable" />
         </EntityType>
-        <Association Name="FK_Section_Course">
-          <End Type="UMS_DatabaseModel.Course" Role="Course" Multiplicity="1" />
-          <End Type="UMS_DatabaseModel.Section" Role="Section" Multiplicity="*" />
+        <Association Name="FK_student_UserInfo">
+          <End Type="UMS_DatabaseModel.UserInfo" Role="UserInfo" Multiplicity="1" />
+          <End Type="UMS_DatabaseModel.student" Role="student" Multiplicity="0..1" />
           <ReferentialConstraint>
-            <Principal Role="Course">
+            <Principal Role="UserInfo">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Section">
-              <PropertyRef Name="course_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Section_Student_Section">
-          <End Type="UMS_DatabaseModel.Section" Role="Section" Multiplicity="1" />
-          <End Type="UMS_DatabaseModel.Section_Student" Role="Section_Student" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Section">
+            <Dependent Role="student">
               <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Section_Student">
-              <PropertyRef Name="section_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Section_Student">
-          <End Type="UMS_DatabaseModel.Student" Role="Student" Multiplicity="1" />
-          <End Type="UMS_DatabaseModel.Section" Role="Section" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Student">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Section">
-              <PropertyRef Name="student_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -293,53 +141,11 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="UMS_DatabaseModelStoreContainer" CdmEntityContainer="UMS_DatabaseEntities">
-          <EntitySetMapping Name="Courses">
-            <EntityTypeMapping TypeName="UMS_DatabaseModel.Course">
-              <MappingFragment StoreEntitySet="Course">
-                <ScalarProperty Name="user_id" ColumnName="user_id" />
-                <ScalarProperty Name="course_credit" ColumnName="course_credit" />
-                <ScalarProperty Name="course_name" ColumnName="course_name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Sections">
-            <EntityTypeMapping TypeName="UMS_DatabaseModel.Section">
-              <MappingFragment StoreEntitySet="Section">
-                <ScalarProperty Name="student_id" ColumnName="student_id" />
-                <ScalarProperty Name="course_id" ColumnName="course_id" />
-                <ScalarProperty Name="teacher_id" ColumnName="teacher_id" />
-                <ScalarProperty Name="sec_name" ColumnName="sec_name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Section_Notices">
-            <EntityTypeMapping TypeName="UMS_DatabaseModel.Section_Notice">
-              <MappingFragment StoreEntitySet="Section Notice">
-                <ScalarProperty Name="messeage" ColumnName="messeage" />
-                <ScalarProperty Name="teacher_id" ColumnName="teacher_id" />
-                <ScalarProperty Name="notice_no" ColumnName="notice_no" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Section_Students">
-            <EntityTypeMapping TypeName="UMS_DatabaseModel.Section_Student">
-              <MappingFragment StoreEntitySet="Section Student">
-                <ScalarProperty Name="teacher_id" ColumnName="teacher_id" />
-                <ScalarProperty Name="grand" ColumnName="grand" />
-                <ScalarProperty Name="final" ColumnName="final" />
-                <ScalarProperty Name="mid" ColumnName="mid" />
-                <ScalarProperty Name="section_id" ColumnName="section_id" />
-                <ScalarProperty Name="sec_student_id" ColumnName="sec_student_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Students">
-            <EntityTypeMapping TypeName="UMS_DatabaseModel.Student">
-              <MappingFragment StoreEntitySet="Student">
-                <ScalarProperty Name="student_password" ColumnName="student_password" />
-                <ScalarProperty Name="student_name" ColumnName="student_name" />
+          <EntitySetMapping Name="students">
+            <EntityTypeMapping TypeName="UMS_DatabaseModel.student">
+              <MappingFragment StoreEntitySet="student">
+                <ScalarProperty Name="int_stu" ColumnName="int_stu" />
+                <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

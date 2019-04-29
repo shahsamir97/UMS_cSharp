@@ -25,11 +25,7 @@ namespace UnivarsityManagementSystem
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Course> Courses { get; set; }
-        public virtual DbSet<Section> Sections { get; set; }
-        public virtual DbSet<Section_Notice> Section_Notices { get; set; }
-        public virtual DbSet<Section_Student> Section_Students { get; set; }
-        public virtual DbSet<Student> Students { get; set; }
+        public virtual DbSet<student> students { get; set; }
         public virtual DbSet<TeacherTable> TeacherTables { get; set; }
         public virtual DbSet<UserInfo> UserInfoes { get; set; }
     }

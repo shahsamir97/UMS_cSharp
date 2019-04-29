@@ -33,7 +33,10 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.studentInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.teachersInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -56,6 +59,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.label1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(6, 49);
             this.panel2.Name = "panel2";
@@ -75,7 +79,8 @@
             // 
             this.menuStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.studentInfoToolStripMenuItem});
+            this.studentInfoToolStripMenuItem,
+            this.teachersInfoToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(929, 34);
@@ -84,10 +89,31 @@
             // 
             // studentInfoToolStripMenuItem
             // 
+            this.studentInfoToolStripMenuItem.BackColor = System.Drawing.Color.DarkGray;
             this.studentInfoToolStripMenuItem.Name = "studentInfoToolStripMenuItem";
             this.studentInfoToolStripMenuItem.Size = new System.Drawing.Size(84, 30);
             this.studentInfoToolStripMenuItem.Text = "Student Info";
             this.studentInfoToolStripMenuItem.Click += new System.EventHandler(this.studentInfoToolStripMenuItem_Click_1);
+            // 
+            // teachersInfoToolStripMenuItem
+            // 
+            this.teachersInfoToolStripMenuItem.BackColor = System.Drawing.Color.DarkGray;
+            this.teachersInfoToolStripMenuItem.Name = "teachersInfoToolStripMenuItem";
+            this.teachersInfoToolStripMenuItem.Size = new System.Drawing.Size(89, 30);
+            this.teachersInfoToolStripMenuItem.Text = "Teachers Info";
+            this.teachersInfoToolStripMenuItem.Click += new System.EventHandler(this.teachersInfoToolStripMenuItem_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.White;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.label1.Location = new System.Drawing.Point(316, 148);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(237, 25);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Click a option to view";
             // 
             // AdminForm
             // 
@@ -98,6 +124,8 @@
             this.Name = "AdminForm";
             this.Text = "AdminForm";
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
@@ -113,5 +141,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem studentInfoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem teachersInfoToolStripMenuItem;
+        private System.Windows.Forms.Label label1;
     }
 }

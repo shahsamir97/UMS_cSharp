@@ -12,19 +12,12 @@ namespace UnivarsityManagementSystem
     using System;
     using System.Collections.Generic;
     
-    public partial class Student
+    public partial class student
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Student()
-        {
-            this.Sections = new HashSet<Section>();
-        }
-    
         public int ID { get; set; }
-        public string student_name { get; set; }
-        public string student_password { get; set; }
+        public string email { get; set; }
+        public string int_stu { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Section> Sections { get; set; }
+        public virtual UserInfo UserInfo { get; set; }
     }
 }

@@ -10,31 +10,29 @@ using System.Windows.Forms;
 
 namespace UnivarsityManagementSystem
 {
-    public partial class AdminPanelTeachersInfo : Form
+    public partial class AdminPanelTeachersInfos : Form
     {
-        public AdminPanelTeachersInfo()
+        public AdminPanelTeachersInfos()
         {
             InitializeComponent();
         }
 
         private void AdminPanelTeachersInfo_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'uMS_DatabaseDataSet3.UserInfo' table. You can move, or remove it, as needed.
-            this.userInfoTableAdapter.Fill(this.uMS_DatabaseDataSet3.UserInfo);
-            // TODO: This line of code loads data into the 'uMS_DatabaseDataSet.Teacher' table. You can move, or remove it, as needed.
-            //this.teacherTableAdapter.Fill(this.uMS_DatabaseDataSet.Teacher);
-
+            populateDataGridView();
         }
         void populateDataGridView()
         {
-            this.userInfoTableAdapter.Fill(this.uMS_DatabaseDataSet3.UserInfo);
-            
+            var teacherslist = context.UserInfoes.Where(u => u.u_type == "Teacher").ToList();
+            dataGridView1.AutoGenerateColumns = false;
+            dataGridView1.DataSource = teacherslist;
+            dataGridView1.Refresh();
+            dataGridView1.ClearSelection();
+
         }
 
         //Other class objects 
         TeacherTable teachersModel = new TeacherTable();
-        
-        
         UMS_DatabaseEntities context = new UMS_DatabaseEntities();
 
         private void addBtn_Click(object sender, EventArgs e)
@@ -52,6 +50,9 @@ namespace UnivarsityManagementSystem
                 context.SaveChanges();
                 populateDataGridView();
                 this.dataGridView1.Refresh();
+
+                //clearing fields
+                nameTxt.Text = passwordTxt.Text = emailTxt.Text = "";
             }
             else
             {
@@ -64,7 +65,7 @@ namespace UnivarsityManagementSystem
             DialogResult dr = MessageBox.Show("Are you sure to save Changes", "Message", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
             if (dr == DialogResult.Yes)
             {
-               // this.teacherTableAdapter.Update(this.uMS_DatabaseDataSet.Teacher);
+                this.dataGridView1.Update();
                 dataGridView1.Refresh();
                 context.SaveChanges();
                 MessageBox.Show("Record Updated");
@@ -73,14 +74,13 @@ namespace UnivarsityManagementSystem
 
         private void searchBtn_Click(object sender, EventArgs e)
         {
-            //var teacher = context.Teachers.ToList();
+            var teacher = context.UserInfoes.Where(u=>u.u_type=="Teacher").ToList();
             if (searchTxt.Text != "")
             {
-               // teacher = teacher.Where(d => d.t_name.Contains(searchTxt.Text)).ToList();
+                teacher=teacher.Where(d => d.u_name.Contains(searchTxt.Text)).ToList();
+                dataGridView1.DataSource = teacher;
             }
-
-            dataGridView1.AutoGenerateColumns = false;
-            //dataGridView1.DataSource = teacher;
+            dataGridView1.DataSource = teacher;
             dataGridView1.Refresh();
         }
 
@@ -92,13 +92,14 @@ namespace UnivarsityManagementSystem
             if (isCellSelected == true)
             {
                 int deletingId = Int32.Parse(deleteTeacherID);
-              //  var deletingTeacher = context.Teachers.FirstOrDefault(tid => tid.ID == deletingId);
-               // if (deletingTeacher == null)
+                var deletingTeacher = context.UserInfoes.FirstOrDefault(tid => tid.ID == deletingId);
+                if (deletingTeacher == null)
                 {
                     MessageBox.Show("Something went wrong!No data available for delete!Make sure you selected a Row to delete.");
                     return;
                 }
-  //              context.Teachers.Remove(deletingTeacher);
+              context.TeacherTables.Remove(deletingTeacher.TeacherTable);
+                context.UserInfoes.Remove(deletingTeacher);
                 context.SaveChanges();
 
                 populateDataGridView();
@@ -122,7 +123,13 @@ namespace UnivarsityManagementSystem
 
         private void refreshBtn_Click(object sender, EventArgs e)
         {
-            this.dataGridView1.Refresh();
+            this.populateDataGridView();
+        }
+
+        private void searchTxt_Click(object sender, EventArgs e)
+        {
+            searchTxt.ForeColor = Color.Black;
+            searchTxt.Text = "";
         }
     }
 }

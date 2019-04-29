@@ -19,6 +19,7 @@ namespace UnivarsityManagementSystem
         public string u_password { get; set; }
         public string u_type { get; set; }
     
+        public virtual student student { get; set; }
         public virtual TeacherTable TeacherTable { get; set; }
     }
 }

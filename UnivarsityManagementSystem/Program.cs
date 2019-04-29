@@ -16,7 +16,7 @@ namespace UnivarsityManagementSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AdminPanelTeachersInfo());
+            Application.Run(new AdminForm());
         }
     }
 }

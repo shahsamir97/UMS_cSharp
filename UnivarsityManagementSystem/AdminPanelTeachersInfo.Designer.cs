@@ -1,6 +1,6 @@
 ﻿namespace UnivarsityManagementSystem
 {
-    partial class AdminPanelTeachersInfo
+    partial class AdminPanelTeachersInfos
     {
        /// <summary>
         /// Required designer variable.
@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.refreshBtn = new System.Windows.Forms.Button();
@@ -36,12 +38,11 @@
             this.updateBtn = new System.Windows.Forms.Button();
             this.searchBtn = new System.Windows.Forms.Button();
             this.searchTxt = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.userInfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.uMS_DatabaseDataSet3 = new UnivarsityManagementSystem.UMS_DatabaseDataSet3();
-            this.teacherBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.studentBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.uMS_DatabaseDataSet4 = new UnivarsityManagementSystem.UMS_DatabaseDataSet4();
+            this.dataGridView1 = new MetroFramework.Controls.MetroGrid();
+            this.teacherID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.teacherpassword = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.teacherEamil = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.emailTxt = new System.Windows.Forms.TextBox();
@@ -53,20 +54,9 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.addBtn = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.studentTableAdapter = new UnivarsityManagementSystem.UMS_DatabaseDataSet4TableAdapters.StudentTableAdapter();
-            this.userInfoTableAdapter = new UnivarsityManagementSystem.UMS_DatabaseDataSet3TableAdapters.UserInfoTableAdapter();
-            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.u_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.u_password = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userInfoBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.uMS_DatabaseDataSet3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teacherBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.studentBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.uMS_DatabaseDataSet4)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -86,7 +76,7 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(610, 487);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(591, 420);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // panel1
@@ -100,7 +90,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(6, 6);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(598, 34);
+            this.panel1.Size = new System.Drawing.Size(579, 34);
             this.panel1.TabIndex = 1;
             // 
             // refreshBtn
@@ -152,51 +142,84 @@
             this.searchTxt.Size = new System.Drawing.Size(210, 26);
             this.searchTxt.TabIndex = 5;
             this.searchTxt.Text = "Search  Name";
+            this.searchTxt.Click += new System.EventHandler(this.searchTxt_Click);
             // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.RaisedVertical;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.iDDataGridViewTextBoxColumn,
-            this.u_name,
-            this.u_password,
-            this.email});
-            this.dataGridView1.DataSource = this.userInfoBindingSource;
+            this.teacherID,
+            this.name,
+            this.teacherpassword,
+            this.teacherEamil});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.EnableHeadersVisualStyles = false;
+            this.dataGridView1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.dataGridView1.Location = new System.Drawing.Point(6, 49);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(598, 432);
+            this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(579, 365);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
-            // userInfoBindingSource
+            // teacherID
             // 
-            this.userInfoBindingSource.DataMember = "UserInfo";
-            this.userInfoBindingSource.DataSource = this.uMS_DatabaseDataSet3;
+            this.teacherID.DataPropertyName = "ID";
+            this.teacherID.HeaderText = "Teacher ID";
+            this.teacherID.Name = "teacherID";
+            this.teacherID.ReadOnly = true;
             // 
-            // uMS_DatabaseDataSet3
+            // name
             // 
-            this.uMS_DatabaseDataSet3.DataSetName = "UMS_DatabaseDataSet3";
-            this.uMS_DatabaseDataSet3.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.name.DataPropertyName = "u_name";
+            this.name.HeaderText = "Name";
+            this.name.Name = "name";
             // 
-            // teacherBindingSource
+            // teacherpassword
             // 
-            this.teacherBindingSource.DataMember = "Teacher";
+            this.teacherpassword.DataPropertyName = "u_password";
+            this.teacherpassword.HeaderText = "Password";
+            this.teacherpassword.Name = "teacherpassword";
             // 
-            // studentBindingSource
+            // teacherEamil
             // 
-            this.studentBindingSource.DataMember = "Student";
-            this.studentBindingSource.DataSource = this.uMS_DatabaseDataSet4;
-            // 
-            // uMS_DatabaseDataSet4
-            // 
-            this.uMS_DatabaseDataSet4.DataSetName = "UMS_DatabaseDataSet4";
-            this.uMS_DatabaseDataSet4.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.teacherEamil.DataPropertyName = "EMAIL";
+            this.teacherEamil.HeaderText = "Email";
+            this.teacherEamil.Name = "teacherEamil";
             // 
             // tableLayoutPanel3
             // 
@@ -206,12 +229,12 @@
             this.tableLayoutPanel3.Controls.Add(this.panel4, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.panel3, 0, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(625, 6);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(606, 6);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(294, 487);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(294, 420);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
             // panel4
@@ -226,7 +249,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(6, 49);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(282, 432);
+            this.panel4.Size = new System.Drawing.Size(282, 365);
             this.panel4.TabIndex = 3;
             // 
             // emailTxt
@@ -310,60 +333,22 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(925, 499);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(906, 432);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // studentTableAdapter
-            // 
-            this.studentTableAdapter.ClearBeforeFill = true;
-            // 
-            // userInfoTableAdapter
-            // 
-            this.userInfoTableAdapter.ClearBeforeFill = true;
-            // 
-            // iDDataGridViewTextBoxColumn
-            // 
-            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn.HeaderText = "Teachers ID";
-            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // u_name
-            // 
-            this.u_name.DataPropertyName = "u_name";
-            this.u_name.HeaderText = "Name";
-            this.u_name.Name = "u_name";
-            // 
-            // u_password
-            // 
-            this.u_password.DataPropertyName = "u_password";
-            this.u_password.HeaderText = "Password";
-            this.u_password.Name = "u_password";
-            // 
-            // email
-            // 
-            this.email.DataPropertyName = "EMAIL";
-            this.email.HeaderText = "Email";
-            this.email.Name = "email";
-            // 
-            // AdminPanelTeachersInfo
+            // AdminPanelTeachersInfos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(925, 499);
+            this.ClientSize = new System.Drawing.Size(906, 432);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "AdminPanelTeachersInfo";
+            this.Name = "AdminPanelTeachersInfos";
             this.Text = "Teachers Information";
             this.Load += new System.EventHandler(this.AdminPanelTeachersInfo_Load);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userInfoBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.uMS_DatabaseDataSet3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teacherBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.studentBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.uMS_DatabaseDataSet4)).EndInit();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
@@ -391,21 +376,12 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox nameTxt;
         private System.Windows.Forms.Label label1;
-        private UMS_DatabaseDataSet4 uMS_DatabaseDataSet4;
-        private System.Windows.Forms.BindingSource studentBindingSource;
-        private UMS_DatabaseDataSet4TableAdapters.StudentTableAdapter studentTableAdapter;
-       
-        private System.Windows.Forms.BindingSource teacherBindingSource;
-       
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TextBox emailTxt;
         private System.Windows.Forms.Label label2;
-        private UMS_DatabaseDataSet3 uMS_DatabaseDataSet3;
-        private System.Windows.Forms.BindingSource userInfoBindingSource;
-        private UMS_DatabaseDataSet3TableAdapters.UserInfoTableAdapter userInfoTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn u_name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn u_password;
-        private System.Windows.Forms.DataGridViewTextBoxColumn email;
+        private MetroFramework.Controls.MetroGrid dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn teacherID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn teacherpassword;
+        private System.Windows.Forms.DataGridViewTextBoxColumn teacherEamil;
     }
 }

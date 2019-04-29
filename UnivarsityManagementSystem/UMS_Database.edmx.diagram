@@ -5,16 +5,10 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="f21479d21c084b37846654d88eba0831" Name="Diagram1">
-        <EntityTypeShape EntityType="UMS_DatabaseModel.Course" Width="1.5" PointX="0.75" PointY="5.25" />
-        <EntityTypeShape EntityType="UMS_DatabaseModel.Section" Width="1.5" PointX="3" PointY="1" />
-        <EntityTypeShape EntityType="UMS_DatabaseModel.Section_Notice" Width="1.5" PointX="7.75" PointY="0.75" />
-        <EntityTypeShape EntityType="UMS_DatabaseModel.Section_Student" Width="1.5" PointX="5.25" PointY="1" />
-        <EntityTypeShape EntityType="UMS_DatabaseModel.Student" Width="1.5" PointX="0.75" PointY="1.375" />
-        <EntityTypeShape EntityType="UMS_DatabaseModel.TeacherTable" Width="1.5" PointX="5" PointY="5.125" />
-        <EntityTypeShape EntityType="UMS_DatabaseModel.UserInfo" Width="1.5" PointX="2.75" PointY="4.875" />
-        <AssociationConnector Association="UMS_DatabaseModel.FK_Section_Course" />
-        <AssociationConnector Association="UMS_DatabaseModel.FK_Section_Student_Section" />
-        <AssociationConnector Association="UMS_DatabaseModel.FK_Section_Student" />
+        <EntityTypeShape EntityType="UMS_DatabaseModel.student" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="UMS_DatabaseModel.TeacherTable" Width="1.5" PointX="3" PointY="3.625" />
+        <EntityTypeShape EntityType="UMS_DatabaseModel.UserInfo" Width="1.5" PointX="0.75" PointY="2" />
+        <AssociationConnector Association="UMS_DatabaseModel.FK_student_UserInfo" />
         <AssociationConnector Association="UMS_DatabaseModel.FK_TeacherTable_UserInfo" />
       </Diagram>
     </edmx:Diagrams>

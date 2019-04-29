@@ -70,33 +70,16 @@
     <Compile Include="AdminPanelTeachersInfo.Designer.cs">
       <DependentUpon>AdminPanelTeachersInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Course.cs">
-      <DependentUpon>UMS_Database.tt</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Section.cs">
-      <DependentUpon>UMS_Database.tt</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="Section_Notice.cs">
-      <DependentUpon>UMS_Database.tt</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="Section_Student.cs">
-      <DependentUpon>UMS_Database.tt</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="Student.cs">
-      <DependentUpon>UMS_Database.tt</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
     <Compile Include="AdminPanelStudentsInfo.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AdminPanelStudentsInfo.Designer.cs">
       <DependentUpon>AdminPanelStudentsInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="student.cs">
+      <DependentUpon>UMS_Database.tt</DependentUpon>
     </Compile>
     <Compile Include="StudentPanel.cs">
       <SubType>Form</SubType>
@@ -125,21 +108,12 @@
       <DependentUpon>UMS_Database.edmx</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="UMS_DatabaseDataSet3.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>UMS_DatabaseDataSet3.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="UMS_DatabaseDataSet4.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>UMS_DatabaseDataSet4.xsd</DependentUpon>
-    </Compile>
     <Compile Include="UserInfo.cs">
       <DependentUpon>UMS_Database.tt</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="UserInfo2.cs" />
+    <Compile Include="UserInfo_Student.cs" />
     <EmbeddedResource Include="AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -180,28 +154,6 @@
       <DependentUpon>UMS_Database.edmx</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
-    </None>
-    <None Include="UMS_DatabaseDataSet3.xsc">
-      <DependentUpon>UMS_DatabaseDataSet3.xsd</DependentUpon>
-    </None>
-    <None Include="UMS_DatabaseDataSet3.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>UMS_DatabaseDataSet3.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="UMS_DatabaseDataSet3.xss">
-      <DependentUpon>UMS_DatabaseDataSet3.xsd</DependentUpon>
-    </None>
-    <None Include="UMS_DatabaseDataSet4.xsc">
-      <DependentUpon>UMS_DatabaseDataSet4.xsd</DependentUpon>
-    </None>
-    <None Include="UMS_DatabaseDataSet4.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>UMS_DatabaseDataSet4.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="UMS_DatabaseDataSet4.xss">
-      <DependentUpon>UMS_DatabaseDataSet4.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

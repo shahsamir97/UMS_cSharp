@@ -8,28 +8,16 @@ namespace UnivarsityManagementSystem
 {
     partial class UserInfo
     {
-       
-        public string student_email
+        public string EMAIL
         {
             get
             {
-                return this.student.email;
+                return this.TeacherTable.EMAIL;
             }
             set
             {
-                this.student.email = value;
+                this.TeacherTable.EMAIL = value;
             }
         }
-
-        public string internationalstudent
-        {
-            get
-            {
-                return this.student.int_stu;
-            }
-        }
-
-        
-
     }
 }
